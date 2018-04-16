@@ -1,7 +1,6 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
 
@@ -12,7 +11,6 @@ import (
 	"golangcloudwatch/api"
 )
 
-var tpl *template.Template
 var router *mux.Router
 
 func main() {
@@ -23,5 +21,5 @@ func main() {
 //addControllerRoutes registers api controllers
 func addControllerRoutes() {
 	router = mux.NewRouter()
-	cloudwatchcontroller.AddRoutes(router, tpl)
+	cloudwatchcontroller.AddRoutes(router)
 }

@@ -2,7 +2,6 @@ package cloudwatchcontroller
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -11,7 +10,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var tpl *template.Template
 var svc *cloudwatchlogs.CloudWatchLogs
 
 func init() {
@@ -27,8 +25,7 @@ func createSession() {
 }
 
 //AddRoutes ...
-func AddRoutes(r *mux.Router, mainTpl *template.Template) {
-	tpl = mainTpl
+func AddRoutes(r *mux.Router) {
 
 	r = r.PathPrefix("/cloudwatch").Subrouter()
 
@@ -48,7 +45,7 @@ func LogGroups(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(result)
 	}
 
-	//tpl.ExecuteTemplate(w, "testsubroute.html", nil)
+	//return result
 }
 
 //LogStreams Landing page for log streams after selecting a log group
@@ -64,5 +61,5 @@ func LogStreams(w http.ResponseWriter, r *http.Request) {
 		fmt.Print(result)
 	}
 
-	//tpl.ExecuteTemplate(w, "testsubroute.html", nil)
+	//return result
 }
